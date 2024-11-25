@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Notas</title>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+    <style>
+  body {
+            font-family: Arial, sans-serif;
+            background-image: url(bk.jpg) ;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+        }
+   </style>
+    <br>
+    <header>
+        <h1>Adicionar Notas</h1>
+    </header>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+
+    <form id="formNotas" action="processar_notas.php" method="post">
+        <label for="aluno">Aluno:</label>
+        <input type="text" id="aluno" name="aluno" required>
+        <br>
+        <label for="materia">Matéria:</label>
+        <input type="text" id="materia" name="materia" required>
+        <br>
+        <label for="nota">Nota:</label>
+        <input type="text" id="nota" name="nota" required>
+        <br>
+        <button type="submit">Adicionar Nota</button>
+    </form>
+
+    <div class="botaovai">
+        <button class="botao-voltar" onclick="voltarAoInicio()">Voltar ao início</button>
+    </div>
+
+    <script>
+        function voltarAoInicio() {
+            history.back();
+        }
+    </script>
+
+    <script>
+        function confirmarAdicao() {
+            var confirmacao = confirm("Deseja adicionar essa nota?");
+
+            if (confirmacao) {
+                
+                $('#formNotas').submit();
+            } else {
+                
+                return false;
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Inicial - Aplicativo Escolas</title>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+    <script>
+        function exibirMensagem() {
+            alert("As informações foram enviadas com sucesso!");
+        }
+    </script>
+</head>
+<body>
+   <style>
+    body {
+            font-family: Arial, sans-serif;
+            background-image: url(bk.jpg) ;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+        }
+        
+        .descricao1 {
+    background-color: rgba(177, 219, 255, 0.897);
+    color: #000;
+    width: 60%;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 10px auto;
+    padding: 20px;
+    text-align: justify;
+}
+   </style>
+    <header>
+        <h1 class="titulo-pagina-inicial">Bem-vindo ao Aplicativo-Escolas</h1>
+    </header>
+    <div class="descricao1">
+        <h2>Explore o Aplicativo-Escolas</h2>
+        <p>O Aplicativo-Escolas é a sua plataforma central para interações educacionais. Professores podem postar lembretes e notas, gestores têm controle total sobre contas, enquanto os alunos podem verificar suas notas e lembretes.</p>
+        <p>Estamos comprometidos em fornecer uma experiência educacional eficiente e acessível. Faça parte da nossa comunidade hoje!</p>
+    </div>
+  
+
+    <div class="caixalogin">
+        <h1>Login</h1>
+        <h2>Seja Bem-vindo ao sistema Aplicativo-Escolas!</h2>
+        <p>Faça login para acessar o sistema. Caso seja sua primeira vez, contate a gestão para criar sua conta.</p>
+
+        <form id="form" action="LoginService.php" method="post">
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required maxlength="45">
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required maxlength="45">
+
+            <input type="submit" value="Entrar" onclick="exibirMensagem();">
+        </form>
+
+        <br>
+        <a href="redefinir_senha.html">
+            <button type="button">Esqueceu a Senha</button>
+        </a>
+    </div>
+    <br>
+    <br>
+
+</body>
+</html>

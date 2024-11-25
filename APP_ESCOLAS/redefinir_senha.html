@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Redefinição de Senha</title>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+    <style>
+   body {
+            font-family: Arial, sans-serif;
+            background-image: url(bk.jpg) ;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+        }
+ 
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            position: relative;
+            background-color: rgba(177, 219, 255, 0.897);
+        }
+
+        fieldset {
+            border: 1px solid #3498dbf6;
+            padding: 10px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        button {
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px 15px;
+        }
+
+        button:hover {
+            background-color: #34495e;
+        }
+
+        .botaovai {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .botaovai button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            margin-top: 10px;
+            width: auto;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#formRedefinicao').submit(function(event) {
+                event.preventDefault();
+
+              
+                var usuario = $('#usuario').val();
+                var senha = $('#senha').val();
+                var confirmarSenha = $('#confirmar_senha').val();
+
+              
+                if (senha !== confirmarSenha) {
+                    alert("As senhas não coincidem. Por favor, tente novamente.");
+                    return;
+                }
+
+       
+                $.ajax({
+                    url: 'redefinir_senha.php',
+                    type: 'POST',
+                    data: { usuario: usuario, senha: senha },
+                    success: function(response) {
+                        alert(response); 
+                    },
+                    error: function(error) {
+                        console.error('Erro na requisição AJAX:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <br>
+    <header>
+        <h1>Redefinição de Senha</h1>
+    </header>
+
+    <form id="formRedefinicao" action="#" method="post">
+        <fieldset>
+            <legend>Redefinir Senha</legend>
+
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required>
+
+            <label for="senha">Nova Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <label for="confirmar_senha">Confirmar Nova Senha:</label>
+            <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+
+            <button type="submit">Redefinir Senha</button>
+        </fieldset>
+    </form>
+
+    <div class="botaovai">
+        <button class="botao-voltar" onclick="voltarAoInicio()">Voltar ao início</button>
+    </div>
+
+    <script>
+        function voltarAoInicio() {
+            history.back();
+        }
+    </script>
+
+</body>
+</html>

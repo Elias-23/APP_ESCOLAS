@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Conta</title>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+    <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-image: url(bk.jpg) ;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+        }
+   </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#formExcluirConta').submit(function(event) {
+                event.preventDefault();
+
+                var usuario = $('#usuario').val();
+                var senha = $('#senha').val();
+
+                $.ajax({
+                    url: 'excluir_conta.php',
+                    type: 'POST',
+                    data: { usuario: usuario, senha: senha },
+                    success: function(response) {
+                        if (response.success) {
+                            window.location.href = 'excluir_conta.html?success=1';
+                        } else {
+                            window.location.href = 'excluir_conta.html?error=1';
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Erro na requisição AJAX:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <br>
+    <header>
+        <h1>Excluir Conta</h1>
+    </header>
+
+
+    <form id="formExcluirConta" action="#" method="post">
+        <label for="usuario">Usuário:</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+
+        <button type="submit">Excluir Conta</button>
+    </form>
+
+
+    <div class="botaovai">
+        <button class="botao-voltar" onclick="voltarAoInicio()">Voltar ao início</button>
+    </div>
+
+    <script>
+        function voltarAoInicio() {
+            history.back();
+        }
+    </script>
+
+
+</body>
+</html>

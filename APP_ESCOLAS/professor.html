@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Professor</title>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+    <style>
+   body {
+            font-family: Arial, sans-serif;
+            background-image: url(bk.jpg) ;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .consulta-quadrado {
+            display: inline-block;
+            width: 30%;
+            margin: 20px;
+            padding: 10px;
+            background-color: #3498db;
+            border-radius: 10px;
+        }
+
+        .consulta-quadrado h2 {
+            text-align: center;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        .resultados {
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: rgba(177, 219, 255, 0.897);
+        }
+
+        th, td {
+            border: 1px solid #3498db;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        button {
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #34495e;
+        }
+
+        .botaovai {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .botaovai button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            margin-top: 10px;
+            width: auto;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <br>
+    <header>
+        <h1>Bem-vindo à Página do Professor</h1>
+    </header>
+
+    <section class="botaovai">
+        <button type="button" onclick="location.href='criar_lembrete.html'">Criar Lembretes</button>
+        <button type="button" onclick="location.href='adicionar_notas.html'">Editar Notas</button>
+        <button type="button" onclick="location.href='pagina_inicial.html'">Sair</button>
+
+    </section>
+
+    <!-- Seção Consultar Usuários -->
+    <div class="consulta-quadrado">
+        <h2>Consultar Usuários</h2>
+        <button onclick="consultarTabela('consulta_tabela_login.php', 'resultadosUsuarios')">Consultar</button>
+        <div class="resultados" id="resultadosUsuarios"></div>
+    </div>
+
+    <!-- Seção Consultar Lembretes -->
+    <div class="consulta-quadrado">
+        <h2>Consultar Lembretes</h2>
+        <button onclick="consultarTabelaLembretes('consulta_tabela_lembretes.php', 'resultadosLembretes')">Consultar</button>
+        <div class="resultados" id="resultadosLembretes"></div>
+    </div>
+
+    <!-- Seção Consultar Notas -->
+<div class="consulta-quadrado">
+    <h2>Consultar Notas</h2>
+    <button onclick="consultarTabelaNotas('consulta_tabela_notas.php', 'resultadosNotas')">Consultar</button>
+    <div class="resultados" id="resultadosNotas"></div>
+</div>
+
+<script>
+    // Função para realizar a consulta e exibir resultados
+    function consultarTabela(url, resultadosId) {
+        // Fazer uma requisição AJAX para o script PHP
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Limpar o conteúdo anterior
+                $('#' + resultadosId).empty();
+
+                // Criar a tabela e adicionar ao elemento
+                var table = $('<table>');
+                var header = '<tr><th>ID</th><th>Usuário</th><th>Data de Registro</th></tr>';
+                table.append(header);
+
+                // Iterar sobre os resultados e adicionar à tabela
+                data.forEach(function(resultado) {
+                    var row = '<tr><td>' + resultado.id + '</td><td>' + resultado.nome_de_usuario + '</td><td>' + resultado.data_de_registro + '</td></tr>';
+                    table.append(row);
+                });
+
+                // Adicionar a tabela ao elemento resultados
+                $('#' + resultadosId).append(table);
+            },
+            error: function(error) {
+                console.error('Erro na requisição AJAX:', error);
+            }
+        });
+    }
+
+    // Função para realizar a consulta e exibir resultados
+    function consultarTabelaLembretes(url, resultadosId) {
+        // Fazer uma requisição AJAX para o script PHP
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Limpar o conteúdo anterior
+                $('#' + resultadosId).empty();
+
+                // Verificar se há dados válidos
+                if (data && Array.isArray(data) && data.length > 0) {
+                    // Criar a tabela e adicionar ao elemento
+                    var table = $('<table>');
+                    var header = '<tr><th>ID</th><th>Título</th><th>Descrição</th></tr>';
+                    table.append(header);
+
+                    // Iterar sobre os resultados e adicionar à tabela
+                    data.forEach(function(resultado) {
+                        // Verificar se as chaves esperadas estão presentes
+                        if ('id' in resultado && 'titulo' in resultado && 'descricao' in resultado) {
+                            var row = '<tr><td>' + resultado.id + '</td><td>' + resultado.titulo + '</td><td>' + resultado.descricao + '</td></tr>';
+                            table.append(row);
+                        }
+                    });
+
+                    // Adicionar a tabela ao elemento resultados
+                    $('#' + resultadosId).append(table);
+                } else {
+                    console.error('Resposta do servidor não contém dados válidos.');
+                }
+            },
+            error: function(error) {
+                console.error('Erro na requisição AJAX:', error);
+            }
+        });
+    }
+
+    // Função para realizar a consulta e exibir resultados de notas
+    function consultarTabelaNotas(url, resultadosId) {
+        // Fazer uma requisição AJAX para o script PHP de notas
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Limpar o conteúdo anterior
+                $('#' + resultadosId).empty();
+
+                // Criar a tabela e adicionar ao elemento
+                var table = $('<table>');
+                var header = '<tr><th>ID</th><th>Aluno</th><th>Matéria</th><th>Nota</th></tr>';
+                table.append(header);
+
+                // Iterar sobre os resultados e adicionar à tabela
+                data.forEach(function(resultado) {
+                    var row = '<tr><td>' + resultado.id + '</td><td>' + resultado.aluno + '</td><td>' + resultado.materia + '</td><td>' + resultado.nota + '</td></tr>';
+                    table.append(row);
+                });
+
+                // Adicionar a tabela ao elemento resultados
+                $('#' + resultadosId).append(table);
+            },
+            error: function(error) {
+                console.error('Erro na requisição AJAX:', error);
+            }
+        });
+    }
+
+    // Exemplo de uso inicial
+    consultarTabela('consulta_tabela_login.php', 'resultadosUsuarios');
+    consultarTabelaLembretes('consulta_tabela_lembretes.php', 'resultadosLembretes');
+    consultarTabelaNotas('consulta_tabela_notas.php', 'resultadosNotas');
+</script>
+
+<!-- ... Outras seções ... -->
+</body>
+</html>
+
+</body>
+</html>

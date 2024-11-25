@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Lembrete</title>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+</head>
+<body>
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            background-image: url(bk.jpg) ;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+        }
+   </style>
+    <br>
+    <header>
+        <h1>Criar Lembrete</h1>
+    </header>
+
+    <form id="formCriarLembrete" action="criar_lembrete.php" method="post">
+        <fieldset>
+            <legend>Novo Lembrete</legend>
+
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" required></textarea>
+
+            <button type="submit">Criar Lembrete</button>
+        </fieldset>
+    </form>
+
+    <div class="botaovai">
+        <button class="botao-voltar" onclick="voltarAoInicio()">Voltar ao início</button>
+    </div>
+
+    <script>
+        function voltarAoInicio() {
+            history.back();
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</body>
+</html>

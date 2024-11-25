@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar Tipo de Usuário</title>
+    <link rel="stylesheet" type="text/css" href="Estilo.css">
+</head>
+<body>
+    <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-image: url(bk.jpg) ;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+        }
+   </style>
+    <header>
+        <h1>Alterar Tipo de Usuário</h1>
+    </header>
+
+    <form id="formAlterarTipo" action="alterar_tipo.php" method="post">
+        <fieldset>
+            <legend>Selecione o Usuário e o Novo Tipo:</legend>
+
+            <label for="usuario">Usuário:</label>
+           
+            <select id="usuario" name="usuario" required>
+            
+            </select>
+            
+            <label for="tipo">Novo Tipo:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="Gestao">Gestão</option>
+                <option value="Professor">Professor</option>
+                <option value="Aluno">Aluno</option>
+            </select>
+            
+            <button type="submit">Alterar Tipo</button>
+        </fieldset>
+    </form>
+
+    <div class="botaovai">
+        <button class="botao-voltar" onclick="voltarAoInicio()">Voltar ao início</button>
+    </div>
+
+    <script>
+        function voltarAoInicio() {
+            history.back();
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        
+        $(document).ready(function() {
+            $.ajax({
+                url: 'carregar_usuarios.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var options = '';
+                    data.forEach(function(usuario) {
+                        options += '<option value="' + usuario.nome_de_usuario + '">' + usuario.nome_de_usuario + '</option>';
+                    });
+                    $('#usuario').html(options);
+                },
+                error: function(error) {
+                    console.error('Erro na requisição AJAX:', error);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

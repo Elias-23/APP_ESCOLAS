@@ -1,0 +1,189 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #104f7c;
+    color: #000000;
+    margin: 0;
+}
+
+header {
+    background-color: #3498db;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    position: relative; 
+    background-color: rgba(177, 219, 255, 0.897);
+}
+
+fieldset {
+    border: 1px solid #3498dbf6;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative; 
+}
+
+fieldset::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+legend {
+    font-weight: bold;
+    color: #3498db;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+button {
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.gender-label {
+    display: flex;
+    align-items: center;
+}
+
+.gender-label input {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+button[type="button"] {
+    background-color: #e74c3c;
+}
+
+.titulo-pagina-inicial {
+    font-size: 30px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.caixalogin {
+    text-align: center;
+    font-size: 18px;
+    background-color: rgba(177, 219, 255, 0.897);
+    border: 1px solid rgb(0, 0, 0);
+    padding: 20px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+h1, h2, p {
+    margin: 10px 0;
+}
+
+form#form {
+    display: inline-block;
+    text-align: left;
+}
+
+.descricao1 {
+    background-color: rgba(177, 219, 255, 0.897);
+    color: #000;
+    width: 60%;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 10px auto;
+    padding: 20px;
+    text-align: justify;
+}
+
+.opcoes {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.opcoes a {
+    text-decoration: none;
+}
+
+.botaovai {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.botaovai button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-top: 10px;
+    width: auto; 
+}
+
+.secoes {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+    background-color: rgba(177, 219, 255, 0.897);
+    border: 1px solid black;
+    height: 750px;
+    
+}
+
+.secao {
+    text-align: center;
+    border: 1px solid #3498db;
+    padding: 20px;
+    width: 200px;
+    margin: 0 10px;
+    border-radius: 10px;
+    background-color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+.ver-notas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.ver-notas th, .ver-notas td {
+    border: 1px solid #3498db;
+    padding: 10px;
+    text-align: center;
+}
+
+.ver-lembretes ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ver-lembretes li {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
